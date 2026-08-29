@@ -1,0 +1,7 @@
+Omundi NGO Framework v3.4.1 fixes
+
+1. Bank Details save flow no longer reloads immediately after clicking Save.
+   It waits for the Bank save write response when detectable, then polls persisted UI state.
+2. Restored edit-mode handling and robust Account Type fallback.
+3. Account setup step title/log now reads approval duration from TEST_DATA instead of hardcoded 90-second wording.
+4. Shipped TEST_DATA approval timeout remains 90 * 1000 (90 seconds).

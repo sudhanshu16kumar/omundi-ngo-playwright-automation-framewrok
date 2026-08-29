@@ -1,0 +1,41 @@
+OMUNDI NGO PORTAL - v3.4.2 VERIFIED AGAINST KNOWN-GOOD v3.1
+===========================================================
+
+Reference supplied by user:
+  omundi-ngo-sanity-boundary-edge-v3.1-fixed(1).zip
+
+What was verified / corrected:
+1. Bank Details regression
+   - v3.4.1 required ALL Bank fields to be visible and non-empty after Save.
+   - Known-good v3.1 only required stable evidence that Bank Details exist:
+     populated Bank Name input OR rendered Bank Name text.
+   - v3.4.2 restores that proven verification strategy.
+   - v3.4.2 still keeps the newer real Bank Details API response check (2xx).
+
+2. Playwright configuration
+   - Restored the known-good v3.1 configuration behavior.
+   - dotenv is quiet again.
+   - viewport comes from TEST_DATA.
+   - screenshot/video/trace remain retained on failure as before.
+
+3. Admin approval timer
+   - Set to 30 seconds as requested:
+       approval.timeoutMs = 30 * 1000
+
+4. New v3.4 functionality retained
+   - fund:seed / funds:seed
+   - campaign:seed / campaigns:seed
+   - voucher:seed / vouchers:seed
+   - seed:all
+   - test:happy-path
+   - module-specific boundary scripts
+   - demo:boundary (3 pass + 2 intentional demo failures)
+   - automatic signup Create Account flow
+   - Fund confirmation modal + real API verification
+   - Voucher criteria + real API payload verification
+   - current boundary/edge fixes
+
+Live environment note:
+The server-side validation in this environment cannot prove the private Omundi
+application's live UI behavior unless that domain is reachable. The user's
+machine remains the authoritative live browser check.

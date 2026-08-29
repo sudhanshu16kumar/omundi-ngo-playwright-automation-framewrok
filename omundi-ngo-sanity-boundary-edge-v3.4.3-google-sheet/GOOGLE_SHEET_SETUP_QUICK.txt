@@ -1,0 +1,29 @@
+OMUNDI NGO - GOOGLE SHEET BUG LOG QUICK SETUP
+==============================================
+
+1. Create/open a Google Sheet.
+2. Extensions -> Apps Script.
+3. Copy scripts/google-sheet-webhook.gs into Code.gs.
+4. Change SHARED_SECRET in Code.gs.
+5. Deploy -> New deployment -> Web app.
+6. Execute as: Me.
+7. Who has access: Anyone.
+8. Copy the deployed Web App URL.
+9. In .env set:
+
+BUG_SHEET_ENABLED=true
+BUG_SHEET_WEBHOOK_URL=<YOUR WEB APP URL>
+BUG_SHEET_SECRET=<SAME SECRET AS CODE.GS>
+
+DEMO:
+npm run demo:boundary
+
+Expected demo result:
+3 passed
+2 failed
+2 rows added to Google Sheet tab: Automation Bugs
+
+CLEAR LOGGED ISSUES:
+npm run bugs:clear
+
+The clear command keeps the header row and removes all bug rows.

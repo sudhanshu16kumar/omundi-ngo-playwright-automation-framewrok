@@ -1,0 +1,41 @@
+OMUNDI NGO FRAMEWORK v3.4.0 - SERVER VALIDATION
+================================================
+
+Validation completed in the ChatGPT execution environment.
+
+PASSED STATIC CHECKS
+--------------------
+1. TypeScript syntax/transpile validation across 37 .ts files: PASS
+2. Relative import resolution check: PASS
+3. package.json explicit Playwright script target paths: PASS
+4. scripts/run-all.cjs Node syntax: PASS
+5. scripts/account-state.cjs Node syntax: PASS
+6. Temporary-stub TypeScript project check: PASS
+7. Demo suite structure: exactly 3 PASS-labelled cases + 2 EXPECTED FAIL-labelled cases: PASS
+8. Seed commands present for Fund, Campaign and Voucher, including plural aliases: PASS
+
+LIVE EXECUTION LIMITATION
+-------------------------
+The execution environment used to build this ZIP cannot resolve the Omundi test host:
+https://omundi-ngo-web.wartinlabstesting.dev
+
+A live browser run against the real Omundi application therefore could not be completed here.
+This is an environment/DNS limitation, not a reported framework test failure.
+
+The project should still be validated once on the user's normal network with:
+
+  npm install
+  npm run install:browsers
+  Copy-Item .env.example .env
+  npm run typecheck
+  npm run test:happy-path
+  npm run fund:seed
+  npm run campaign:seed
+  npm run voucher:seed
+  npm run demo:boundary
+
+Expected demo result:
+  3 passed
+  2 failed
+
+The two demo failures are synthetic and intentionally generated for internal presentation evidence.

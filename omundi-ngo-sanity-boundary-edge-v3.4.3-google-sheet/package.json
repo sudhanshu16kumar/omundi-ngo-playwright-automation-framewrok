@@ -1,0 +1,43 @@
+{
+  "name": "omundi-ngo-sanity-boundary-edge",
+  "version": "3.4.3",
+  "private": true,
+  "description": "Omundi NGO Portal Playwright framework for account setup, seed data, happy path, sanity, boundary, edge and internal demo testing.",
+  "scripts": {
+    "install:browsers": "playwright install chromium",
+    "typecheck": "tsc --noEmit",
+    "test:list": "playwright test --list",
+    "account:setup": "playwright test tests/setup/account-setup.spec.ts --headed --workers=1",
+    "account:status": "node scripts/account-state.cjs status",
+    "account:mark-approved": "node scripts/account-state.cjs approve",
+    "account:reset": "node scripts/account-state.cjs reset",
+    "bank:setup": "playwright test tests/setup/bank-details-setup.spec.ts --headed --workers=1",
+    "fund:seed": "playwright test tests/setup/fund-seed.spec.ts --headed --workers=1",
+    "funds:seed": "playwright test tests/setup/fund-seed.spec.ts --headed --workers=1",
+    "campaign:seed": "playwright test tests/setup/active-campaign-seed.spec.ts --headed --workers=1",
+    "campaigns:seed": "playwright test tests/setup/active-campaign-seed.spec.ts --headed --workers=1",
+    "voucher:seed": "playwright test tests/setup/voucher-seed.spec.ts --headed --workers=1",
+    "vouchers:seed": "playwright test tests/setup/voucher-seed.spec.ts --headed --workers=1",
+    "seed:all": "npm run bank:setup && npm run fund:seed && npm run campaign:seed && npm run voucher:seed",
+    "test:happy-path": "playwright test tests/sanity/happy-path.spec.ts --headed --workers=1",
+    "test:sanity": "playwright test tests/sanity --headed --workers=1",
+    "test:campaign-boundary": "playwright test tests/boundary/campaigns.boundary.spec.ts --headed --workers=1",
+    "test:funds-boundary": "playwright test tests/boundary/funds.boundary.spec.ts --headed --workers=1",
+    "test:vouchers-boundary": "playwright test tests/boundary/vouchers.boundary.spec.ts --headed --workers=1",
+    "test:login-boundary": "playwright test tests/boundary/login.boundary.spec.ts --headed --workers=1",
+    "test:boundary": "node scripts/run-all.cjs --boundary-only",
+    "test:edge": "playwright test tests/edge --headed --workers=1",
+    "demo:boundary": "playwright test tests/boundary/demo.boundary.spec.ts --headed --workers=1",
+    "bugs:clear": "node scripts/clear-google-sheet.cjs",
+    "test:all": "node scripts/run-all.cjs",
+    "test:debug": "playwright test --debug --workers=1",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "latest",
+    "@playwright/test": "latest",
+    "@types/node": "latest",
+    "dotenv": "latest",
+    "typescript": "latest"
+  }
+}

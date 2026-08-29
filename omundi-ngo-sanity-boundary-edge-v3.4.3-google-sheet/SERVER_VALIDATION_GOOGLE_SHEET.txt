@@ -1,0 +1,34 @@
+OMUNDI NGO v3.4.3 - SERVER VALIDATION
+======================================
+
+Base used:
+omundi-ngo-sanity-boundary-edge-v3.4.2-verified
+(which was previously matched back to the user's known-good v3.1 Bank Details behavior)
+
+Validation performed in the execution environment:
+
+1. TypeScript syntax/transpile check across the framework.
+2. Node syntax check for all CJS scripts touched by this change.
+3. Google Apps Script syntax check.
+4. package.json command/path wiring validation.
+5. Custom Playwright reporter wiring validation.
+6. Local mock Web App integration test:
+   - simulated a failed Playwright test
+   - reporter sent an append payload
+   - mock endpoint returned BUG-001
+   - screenshot/video/trace paths were included
+7. npm run bugs:clear integration test against the same mock endpoint:
+   - clear action sent successfully
+   - endpoint confirmed clear
+8. Google Apps Script behavior test with mocked SpreadsheetApp/ContentService:
+   - creates Automation Bugs sheet when missing
+   - writes header
+   - appends BUG-001
+   - clears data rows and restores header
+9. ZIP integrity validation.
+
+Live-environment limitation:
+The execution environment cannot resolve:
+omundi-ngo-web.wartinlabstesting.dev
+
+Therefore the real Omundi browser flow and a real Google account/Web App could not be executed here. Those require the user's network and deployed Google Apps Script URL. The Google Sheet transport and clear behavior were instead executed end-to-end against a local HTTP mock, and the Apps Script logic was executed against local spreadsheet mocks.
